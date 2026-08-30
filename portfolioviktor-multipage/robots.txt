@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://rusinek-greg.co.uk/sitemap.xml
