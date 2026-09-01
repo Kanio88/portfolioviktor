@@ -14,15 +14,10 @@ if (navToggle && nav) {
   }));
 }
 const enquiry = document.querySelector('[data-enquiry-form]');
-if (enquiry) {
-  enquiry.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const data = new FormData(enquiry);
-    const subject = encodeURIComponent(`Portfolio enquiry from ${data.get('name') || 'website visitor'}`);
-    const body = encodeURIComponent(`Name: ${data.get('name') || ''}
-Email: ${data.get('email') || ''}
-
-${data.get('message') || ''}`);
-    window.location.href = `mailto:greg@every-day-care.com?subject=${subject}&body=${body}`;
-  });
+if (enquiry && new URLSearchParams(window.location.search).get('success') === '1') {
+  const notice = document.createElement('p');
+  notice.className = 'form-success';
+  notice.setAttribute('role', 'status');
+  notice.textContent = 'Thanks — your enquiry has been sent. Greg will respond as soon as possible.';
+  enquiry.prepend(notice);
 }
