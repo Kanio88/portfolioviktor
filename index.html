@@ -68,7 +68,25 @@
     <div class="footer-links"><a href="/about/">About</a><a href="/services/">Services</a><a href="/experience/">Experience</a><a href="/certificates/">Certificates</a><a href="/get-in-touch/">Get in Touch</a></div>
   </div>
 </footer>
+<div id="cms-content" class="container" aria-live="polite">Loading content…</div>
+
 <script src="/script.js"></script>
+<script>
+  (function() {
+    // Fetch editable home snippet and inject into #cms-content.
+    // If it fails (e.g. opened over file://), leave the default page content intact.
+    function safeInsert(html){
+      var target = document.getElementById('cms-content');
+      if(target) target.innerHTML = html;
+    }
+    try {
+      fetch('/home_content.html', {cache: 'no-store'})
+        .then(function(res){ if(!res.ok) throw new Error('Not found'); return res.text(); })
+        .then(function(text){ safeInsert(text); })
+        .catch(function(){ /* silent fallback */ });
+    } catch(e) { /* silent fallback */ }
+  })();
+</script>
 
     </body>
     </html>

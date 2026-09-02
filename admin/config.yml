@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+
+repo: "Kanio88/portfolioviktor"
+
+# Media files (safe default). Adjust if your project stores media elsewhere.
+media_folder: "static/media"
+public_folder: "/static/media"
+
+collections:
+  - name: "home"
+    label: "Home snippet"
+    files:
+      - file: "home_content.html"
+        label: "Home snippet"
+        name: "home"
+        # Use a code widget so editors can edit raw HTML safely
+        fields:
+          - { label: "HTML", name: "body", widget: "code", default_language: "html" }
