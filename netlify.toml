@@ -1,3 +1,13 @@
+# This is a plain static HTML site (no Next.js / no build step).
+# The Next.js Runtime is enabled on the site in the Netlify UI, but it cannot
+# run here: it requires a publish directory separate from the base directory
+# containing Next.js build output. Skipping it lets the static files deploy as-is.
+[build]
+  publish = "."
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
 [[headers]]
   for = "/"
   [headers.values]
